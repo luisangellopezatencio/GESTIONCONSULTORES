@@ -1,0 +1,23 @@
+<template>
+    <div class="c-container" itemid={itemId}>
+        <lightning-layout horizontal-align="space" vertical-align="end" >
+            <lightning-layout-item padding="around-small">
+                <lightning-input type="date" name="date" label="Ingrese Fecha"></lightning-input>
+            </lightning-layout-item>
+            <lightning-layout-item padding="around-small">
+                <lightning-input type="number" name="number" label="Ingrese el numero de horas" required></lightning-input>
+            </lightning-layout-item>
+            <lightning-layout-item padding="around-small">
+                <c-drop_down label="Tipo de hora" option={options} ></c-drop_down>
+            </lightning-layout-item>
+            <lightning-layout-item padding="around-small">
+                <lightning-input type="text" name="proyecto" label="Ingrese Proyecto"></lightning-input>
+            </lightning-layout-item>
+            <lightning-layout-item padding="around-small">
+                 <lightning-button variant="destructive" 
+                  label="Borrar" title="Borrar" onclick={borrarReporte} class="c-button"></lightning-button>
+            </lightning-layout-item>
+        </lightning-layout>
+    </div>
+    
+</template>

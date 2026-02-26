@@ -1,0 +1,19 @@
+.c-save {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.c-title {
+    font-size: large;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: center;
+    padding: 10px;
+}
+
+.c-subtitle {
+    font-size: medium;
+    font-weight: bold;
+    padding: 10px;
+}
