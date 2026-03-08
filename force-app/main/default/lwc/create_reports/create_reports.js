@@ -1,4 +1,5 @@
-import { LightningElement, track} from 'lwc';
+import { LightningElement, track, wire } from 'lwc';
+import getConsultores from '@salesforce/apex/ConsultorController.getConsultores';
 
 export default class Main extends LightningElement {
     @track
@@ -8,11 +9,37 @@ export default class Main extends LightningElement {
         }
     ];
 
-    options = [
-        { label: 'Escoger consultor...', value: '' },
-        { label: 'Luis', value: 'Luis' },
-        { label: 'Sergio', value: 'Sergio' },
-    ]
+
+    @wire(getConsultores)
+    consultores;
+
+    getOptions(consultores) {
+
+        if (consultores.error) {
+            return [{
+                label: consultores.error.message,
+                value: 'Error'
+            }]
+        }
+
+        if (consultores.data) {
+            return consultores.data.map((consultor) => {
+                return {
+                    label: consultor.Name,
+                    value: consultor.Id
+                }
+            })
+        }
+
+        return [];
+    }
+
+   get options() {
+        if (!this.consultores) {
+            return [];
+        }   
+        return this.getOptions(this.consultores);
+    }
 
     aggReporte = () => {
         this.reportes.push({
@@ -25,6 +52,6 @@ export default class Main extends LightningElement {
     }
 
     saveReport() {
-        alert('TODO: Save report in DB')
+        alert('TODO: Save report in DB');
     }
 }
