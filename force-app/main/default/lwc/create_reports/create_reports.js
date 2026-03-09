@@ -80,9 +80,19 @@ export default class Main extends LightningElement {
         });
     }
 
+    validateReportes() {
+        let isValid = true;
+        this.reportes.forEach((reporte) => {
+            if (!reporte.fecha || !reporte.horas || !reporte.tipoHora || !reporte.proyecto || !this.consultor_id) {
+                isValid = false;
+            }
+        });
+        return isValid;
+    }
+
     saveReport() {
         //const payload = JSON.stringify(this.reportes, null, 2);
-        const payload = JSON.parse(JSON.stringify(this.reportes));
+        //const payload = JSON.parse(JSON.stringify(this.reportes));
 
         // console.log('--- CONSULTOR SELECCIONADO ---');
         // console.log(this.consultor_id);
@@ -90,18 +100,21 @@ export default class Main extends LightningElement {
         // console.log('--- PAYLOAD FINAL PARA APEX ---');
         // console.log(payload);
 
-        postReporte({
+        if (this.validateReportes()) {
+            postReporte({
             idConsultor: this.consultor_id,
             reportes: this.reportes
-        }) .then((result) => {
+                }) .then((result) => {
                 alert('Reporte guardado exitosamente: ' + result)
-            })
-            .catch((error) => {
+                })
+                .catch((error) => {
             // Imprimimos el objeto completo en la consola para espiarlo
             console.error('Objeto de error completo:', JSON.parse(JSON.stringify(error)));
             let mensajeReal = error.body ? error.body.message : 'Error desconocido';
             alert('Falló el guardado en Salesforce. Motivo: ' + mensajeReal);
             });
-
-    }
+        }else{
+            alert('Por favor complete todos los campos');
+        }  
+        }
 }

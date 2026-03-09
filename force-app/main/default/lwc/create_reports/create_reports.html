@@ -1,19 +1,24 @@
 <template>
-        <header class="c-title">
-            <h1>Gestion de Consultores</h1>
+    <div class="slds-var-m-around_medium">
+        <header class="c-title c-card-header">
+            <lightning-icon icon-name="action:new_note" alternative-text="New note" title="New note"></lightning-icon>
+            <h1>Crear Reportes</h1>
         </header>
-        <div>
-            <p class="c-subtitle">Crear reporte de horas por consultor</p>
-            <c-drop_down label='Consultor' option={options} onobtvalue={obtIdConsultor}></c-drop_down>
-        </div>
-        <div>
-            <h2 class="c-subtitle">Detalle del reporte</h2>
-            <template for:each={reportes} for:item="reporte">
-                <c-reporte_item key={reporte.Id} item-id={reporte.Id} onborrarreporte={borrarPorId} onobtreporte={actReporte}></c-reporte_item>
-            </template>
-            <lightning-button label="Agregar otra fila" title="Agregar otra fila" onclick={aggReporte}></lightning-button>         
-        </div>
-        <div class="c-save">
-            <lightning-button label="Guardar" title="Guardar" onclick={saveReport}></lightning-button> 
-        </div>
+
+        <main class="c-main">
+            <div class="slds-border_bottom sld slds-p-bottom_medium">
+                <c-drop_down label='Consultor' option={options} onobtvalue={obtIdConsultor}></c-drop_down>
+            </div>
+            <div class="slds-border_bottom sld slds-p-bottom_medium">
+                <h2 class="c-subtitle">Detalle del reporte</h2>
+                <template for:each={reportes} for:item="reporte">
+                    <c-reporte_item key={reporte.Id} item-id={reporte.Id} onborrarreporte={borrarPorId} onobtreporte={actReporte}></c-reporte_item>
+                </template>
+                <lightning-button label="Agregar otra fila" title="Agregar otra fila" onclick={aggReporte}></lightning-button>         
+            </div>
+            <div class="c-save">
+                <lightning-button label="Guardar" title="Guardar" onclick={saveReport}></lightning-button>
+            </div>
+        </main>
+    </div>
 </template>
