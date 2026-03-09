@@ -2,16 +2,16 @@
     <div class="c-container" itemid={itemId}>
         <lightning-layout horizontal-align="space" vertical-align="end" >
             <lightning-layout-item padding="around-small">
-                <lightning-input type="date" name="date" label="Ingrese Fecha"></lightning-input>
+                <lightning-input type="date" name="date" label="Ingrese Fecha" onchange={handleChangeDate}></lightning-input>
             </lightning-layout-item>
             <lightning-layout-item padding="around-small">
-                <lightning-input type="number" name="number" label="Ingrese el numero de horas" required></lightning-input>
+                <lightning-input type="number" name="number" label="Ingrese el numero de horas" onchange={handleChangeNumber} required></lightning-input>
             </lightning-layout-item>
             <lightning-layout-item padding="around-small">
-                <c-drop_down label="Tipo de hora" option={options}></c-drop_down>
+                <c-drop_down label="Tipo de hora" option={options} onobtvalue={obtTipoHora}></c-drop_down>
             </lightning-layout-item>
             <lightning-layout-item padding="around-small">
-                <lightning-input type="text" name="proyecto" label="Ingrese Proyecto"></lightning-input>
+                <lightning-input type="text" name="proyecto" label="Ingrese Proyecto" onchange={handleChangeProyect}></lightning-input>
             </lightning-layout-item>
             <lightning-layout-item padding="around-small">
                  <lightning-button variant="destructive" 

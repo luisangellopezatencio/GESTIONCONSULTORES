@@ -11,5 +11,11 @@ export default class SelectBasic extends LightningElement {
 
     handleChange(event) {
         this.value = event.detail.value;
+        this.dispatchEvent(
+            new CustomEvent('obtvalue', {
+            detail: {
+                value: this.value
+            }
+        }))
     }
 }

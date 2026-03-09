@@ -4,12 +4,12 @@
         </header>
         <div>
             <p class="c-subtitle">Crear reporte de horas por consultor</p>
-            <c-drop_down label='Consultor' option={options}></c-drop_down>
+            <c-drop_down label='Consultor' option={options} onobtvalue={obtIdConsultor}></c-drop_down>
         </div>
         <div>
             <h2 class="c-subtitle">Detalle del reporte</h2>
             <template for:each={reportes} for:item="reporte">
-                <c-reporte_item key={reporte.Id} item-id={reporte.Id} onborrarreporte={borrarPorId}></c-reporte_item>
+                <c-reporte_item key={reporte.Id} item-id={reporte.Id} onborrarreporte={borrarPorId} onobtreporte={actReporte}></c-reporte_item>
             </template>
             <lightning-button label="Agregar otra fila" title="Agregar otra fila" onclick={aggReporte}></lightning-button>         
         </div>
