@@ -80,6 +80,27 @@ export default class Main extends LightningElement {
         });
     }
 
+    get totalHoras() {
+        return this.reportes.reduce((total, reporte) => total + Number(reporte.horas), 0);
+    }
+
+    obtTotalHorasPorTipo(tipo){
+        return this.reportes.reduce((total, reporte) => {
+            if (reporte.tipoHora === tipo) {
+                return total + Number(reporte.horas);
+            }
+            return total;
+        }, 0);
+    }
+
+    get totalHorasLab() {
+        return this.obtTotalHorasPorTipo('laboral');
+    }
+
+    get totalHorasFab() {
+        return this.obtTotalHorasPorTipo('fabrica');
+    }
+
     validateReportes() {
         let isValid = true;
         this.reportes.forEach((reporte) => {
